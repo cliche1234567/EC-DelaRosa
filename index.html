@@ -18,15 +18,6 @@
             font-family: 'Inter', sans-serif;
         }
         
-        .experience-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .experience-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-        }
-        
         .nav-link {
             position: relative;
         }
@@ -46,11 +37,29 @@
             width: 100%;
         }
 
-        /* Name style inspired by michalpechardo.com */
         .hero-name {
             font-weight: 800;
             line-height: 0.95;
             letter-spacing: -0.03em;
+        }
+
+        /* Accordion styles */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+        }
+        
+        .accordion-content.open {
+            max-height: 800px;
+        }
+        
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .accordion-icon.rotated {
+            transform: rotate(180deg);
         }
     </style>
 </head>
@@ -75,10 +84,9 @@
         </div>
     </nav>
 
-    <!-- Hero (Name styled like michalpechardo.com) -->
+    <!-- Hero -->
     <section class="max-w-5xl mx-auto px-6 pt-24 pb-20">
         <div>
-            <!-- Large stacked name -->
             <h1 class="hero-name text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-slate-900">
                 Edwin Clyde
             </h1>
@@ -86,19 +94,16 @@
                 Dela Rosa
             </h1>
 
-            <!-- Subtitle -->
             <p class="mt-8 text-xl md:text-2xl font-medium text-slate-600 tracking-tight">
                 AI Data Specialist · Developer · Operations
             </p>
 
-            <!-- Short intro -->
             <p class="mt-6 text-lg text-slate-500 max-w-2xl leading-relaxed">
                 Experienced professional with a strong background in AI data labeling, 
                 autonomous vehicle operations, medical transport, team leadership, 
-                and freelance software development.
+                and freelance graphic design & AV production.
             </p>
 
-            <!-- Buttons -->
             <div class="mt-10 flex flex-wrap gap-4">
                 <a href="mailto:clyde.dlrs30@gmail.com" 
                    class="inline-flex items-center gap-2 text-white px-6 py-3.5 rounded-full text-sm font-medium transition-opacity hover:opacity-90"
@@ -125,8 +130,9 @@
                     My work focuses on high-quality data labeling for Vision-Language Models (VLM) and real-world data collection as an AI Vehicle Operator.
                 </p>
                 <p class="text-slate-600 text-lg leading-relaxed">
-                    Alongside my roles at Tesla, I also work as a freelance developer. Before joining Tesla, I developed strong leadership and operational skills as an Assistant Manager at In-N-Out Burger 
-                    and gained experience in professional driving through JBL Medical Transport.
+                    Alongside my roles at Tesla, I also work as a freelance graphic designer and AV operator. 
+                    Before joining Tesla, I developed strong leadership and operational skills as an Assistant Manager at In-N-Out Burger 
+                    and gained experience in professional medical transport through JBL Medical Transport.
                 </p>
             </div>
         </div>
@@ -135,129 +141,180 @@
     <!-- Experience -->
     <section id="experience" class="max-w-5xl mx-auto px-6 py-20">
         <h2 class="text-sm font-semibold tracking-widest uppercase mb-2" style="color:#304674">Experience</h2>
-        <p class="text-slate-500 mb-12">Click any role to open more details</p>
+        <p class="text-slate-500 mb-12">Click any role to expand details</p>
 
-        <div class="space-y-5">
+        <div class="space-y-4">
 
-            <!-- Tesla VLM Editor -->
-            <a href="https://YOUR-LINK-HERE-1.com" target="_blank" rel="noopener noreferrer"
-               class="experience-card block bg-white border border-slate-200 rounded-2xl p-6 hover:border-slate-300">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 bg-red-50 text-red-600 rounded-xl flex items-center justify-center">
-                                <i class="fa-solid fa-car"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-lg text-slate-900">Tesla</h3>
-                                <p class="text-slate-600">VLM Editor — Data Labeling</p>
-                            </div>
+            <!-- 1. Tesla VLM Editor -->
+            <div class="border border-slate-200 rounded-2xl overflow-hidden">
+                <button onclick="toggleAccordion(this)" 
+                        class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-colors">
+                    <div class="flex items-center gap-4">
+                        <!-- Logo placeholder -->
+                        <div class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center overflow-hidden border border-slate-200">
+                            <!-- Replace src with your Tesla logo -->
+                            <img src="logos/tesla.png" alt="Tesla" class="w-full h-full object-contain p-1" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="hidden w-full h-full items-center justify-center text-red-600 font-bold text-xs">TESLA</div>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-slate-900">Tesla</h3>
+                            <p class="text-slate-600 text-sm">VLM Editor — Data Labeling</p>
                         </div>
                     </div>
-                    <div class="text-sm text-slate-500 font-medium whitespace-nowrap">
-                        2026 – Present
+                    <div class="flex items-center gap-4">
+                        <span class="text-sm text-slate-500 font-medium hidden sm:block">2026 – Present</span>
+                        <i class="fa-solid fa-chevron-down accordion-icon text-slate-400"></i>
+                    </div>
+                </button>
+                
+                <div class="accordion-content bg-slate-50">
+                    <div class="px-6 pb-6 pt-2">
+                        <p class="text-sm text-slate-500 mb-4">1501 Page Mill Rd, Palo Alto, CA</p>
+                        <ul class="space-y-2 text-slate-700 text-sm leading-relaxed">
+                            <li class="flex gap-2"><span class="text-slate-400">•</span> Interact with team members to help us improve on the design of an efficient labeling interface</li>
+                            <li class="flex gap-2"><span class="text-slate-400">•</span> Gain computer vision and machine learning knowledge to better understand how the labels are used by learning algorithms</li>
+                            <li class="flex gap-2"><span class="text-slate-400">•</span> Make judgement calls on difficult edge cases that might come up during labeling</li>
+                        </ul>
                     </div>
                 </div>
-                <p class="mt-4 text-slate-500 text-sm leading-relaxed">
-                    Annotating and refining data for Vision-Language Models to improve Tesla’s AI systems.
-                </p>
-            </a>
+            </div>
 
-            <!-- Tesla AI Vehicle Operator -->
-            <a href="https://YOUR-LINK-HERE-2.com" target="_blank" rel="noopener noreferrer"
-               class="experience-card block bg-white border border-slate-200 rounded-2xl p-6 hover:border-slate-300">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 bg-red-50 text-red-600 rounded-xl flex items-center justify-center">
-                                <i class="fa-solid fa-robot"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-lg text-slate-900">Tesla</h3>
-                                <p class="text-slate-600">AI Vehicle Operator — Data Collection</p>
-                            </div>
+            <!-- 2. Tesla AI Vehicle Operator -->
+            <div class="border border-slate-200 rounded-2xl overflow-hidden">
+                <button onclick="toggleAccordion(this)" 
+                        class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-colors">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center overflow-hidden border border-slate-200">
+                            <img src="logos/tesla.png" alt="Tesla" class="w-full h-full object-contain p-1" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="hidden w-full h-full items-center justify-center text-red-600 font-bold text-xs">TESLA</div>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-slate-900">Tesla</h3>
+                            <p class="text-slate-600 text-sm">AI Vehicle Operator — Data Collection</p>
                         </div>
                     </div>
-                    <div class="text-sm text-slate-500 font-medium whitespace-nowrap">
-                        2026 – Present
+                    <div class="flex items-center gap-4">
+                        <span class="text-sm text-slate-500 font-medium hidden sm:block">2026 – Present</span>
+                        <i class="fa-solid fa-chevron-down accordion-icon text-slate-400"></i>
+                    </div>
+                </button>
+                
+                <div class="accordion-content bg-slate-50">
+                    <div class="px-6 pb-6 pt-2">
+                        <p class="text-sm text-slate-500 mb-4">401 Cesar Chavez St, San Francisco, CA</p>
+                        <ul class="space-y-2 text-slate-700 text-sm leading-relaxed">
+                            <li class="flex gap-2"><span class="text-slate-400">•</span> Start/Stop recording devices and perform minor equipment/software debugging as needed</li>
+                            <li class="flex gap-2"><span class="text-slate-400">•</span> Ensure safe vehicle operation by maintaining constant situational awareness and intervening when necessary</li>
+                            <li class="flex gap-2"><span class="text-slate-400">•</span> Collect, label, and report high-quality driving data to improve machine learning models and system performance</li>
+                            <li class="flex gap-2"><span class="text-slate-400">•</span> Document system behaviors, edge cases, and anomalies with detailed written and digital reports</li>
+                            <li class="flex gap-2"><span class="text-slate-400">•</span> Analyze and report on the quality of data collected during each shift</li>
+                            <li class="flex gap-2"><span class="text-slate-400">•</span> Collaborate with engineers and data teams to provide actionable feedback on vehicle performance</li>
+                        </ul>
                     </div>
                 </div>
-                <p class="mt-4 text-slate-500 text-sm leading-relaxed">
-                    Operating vehicles to collect real-world data that powers Tesla’s autonomous driving technology.
-                </p>
-            </a>
+            </div>
 
-            <!-- Freelance Developer -->
-            <a href="https://YOUR-LINK-HERE-5.com" target="_blank" rel="noopener noreferrer"
-               class="experience-card block bg-white border border-slate-200 rounded-2xl p-6 hover:border-slate-300">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background-color:#e8eef7; color:#304674">
-                                <i class="fa-solid fa-code"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-lg text-slate-900">Freelance</h3>
-                                <p class="text-slate-600">Developer</p>
-                            </div>
+            <!-- 3. JBL Medical Transport -->
+            <div class="border border-slate-200 rounded-2xl overflow-hidden">
+                <button onclick="toggleAccordion(this)" 
+                        class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-colors">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center overflow-hidden border border-slate-200">
+                            <img src="logos/jbl.png" alt="JBL Medical Transport" class="w-full h-full object-contain p-1" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="hidden w-full h-full items-center justify-center text-emerald-600 font-bold text-xs">JBL</div>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-slate-900">JBL Medical Transport</h3>
+                            <p class="text-slate-600 text-sm">Transportation Specialist</p>
                         </div>
                     </div>
-                    <div class="text-sm text-slate-500 font-medium whitespace-nowrap">
-                        Present
+                    <div class="flex items-center gap-4">
+                        <span class="text-sm text-slate-500 font-medium hidden sm:block">2024 – Present</span>
+                        <i class="fa-solid fa-chevron-down accordion-icon text-slate-400"></i>
+                    </div>
+                </button>
+                
+                <div class="accordion-content bg-slate-50">
+                    <div class="px-6 pb-6 pt-2">
+                        <p class="text-sm text-slate-500 mb-4">480 Collins Ave, Colma, CA</p>
+                        <ul class="space-y-2 text-slate-700 text-sm leading-relaxed">
+                            <li class="flex gap-2"><span class="text-slate-400">•</span> Safely transport patients to and from medical facilities while adhering to strict safety, timing, and compliance standards</li>
+                            <li class="flex gap-2"><span class="text-slate-400">•</span> Conduct pre- and post-trip vehicle inspections to ensure operational readiness and safety compliance</li>
+                            <li class="flex gap-2"><span class="text-slate-400">•</span> Utilize GPS navigation systems and dispatch software to track routes and document trip details accurately</li>
+                            <li class="flex gap-2"><span class="text-slate-400">•</span> Communicate trip status, delays, or incidents clearly with dispatch and supervisors</li>
+                            <li class="flex gap-2"><span class="text-slate-400">•</span> Provide professional, calm support to passengers, including individuals requiring additional assistance</li>
+                            <li class="flex gap-2"><span class="text-slate-400">•</span> Maintain detailed logs of mileage, service reports, and trip documentation with high accuracy</li>
+                        </ul>
                     </div>
                 </div>
-                <p class="mt-4 text-slate-500 text-sm leading-relaxed">
-                    Building websites, web applications, and custom solutions for clients as a freelance developer.
-                </p>
-            </a>
+            </div>
 
-            <!-- JBL Medical Transport -->
-            <a href="https://YOUR-LINK-HERE-3.com" target="_blank" rel="noopener noreferrer"
-               class="experience-card block bg-white border border-slate-200 rounded-2xl p-6 hover:border-slate-300">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center">
-                                <i class="fa-solid fa-truck-medical"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-lg text-slate-900">JBL Medical Transport</h3>
-                                <p class="text-slate-600">Driver</p>
-                            </div>
+            <!-- 4. In-N-Out Burger -->
+            <div class="border border-slate-200 rounded-2xl overflow-hidden">
+                <button onclick="toggleAccordion(this)" 
+                        class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-colors">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center overflow-hidden border border-slate-200">
+                            <img src="logos/innout.png" alt="In-N-Out Burger" class="w-full h-full object-contain p-1" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="hidden w-full h-full items-center justify-center text-amber-600 font-bold text-xs">IN-N-OUT</div>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-slate-900">In-N-Out Burger</h3>
+                            <p class="text-slate-600 text-sm">Assistant Manager</p>
                         </div>
                     </div>
-                    <div class="text-sm text-slate-500 font-medium whitespace-nowrap">
-                        2024 – Present
+                    <div class="flex items-center gap-4">
+                        <span class="text-sm text-slate-500 font-medium hidden sm:block">Aug 2020 – Jan 2026</span>
+                        <i class="fa-solid fa-chevron-down accordion-icon text-slate-400"></i>
+                    </div>
+                </button>
+                
+                <div class="accordion-content bg-slate-50">
+                    <div class="px-6 pb-6 pt-2">
+                        <p class="text-sm text-slate-500 mb-4">372 Gellert Blvd, Daly City, CA</p>
+                        <ul class="space-y-2 text-slate-700 text-sm leading-relaxed">
+                            <li class="flex gap-2"><span class="text-slate-400">•</span> Supervised daily operations in a high-volume environment, ensuring smooth workflows and adherence to company standards</li>
+                            <li class="flex gap-2"><span class="text-slate-400">•</span> Provided frontline support to staff by troubleshooting register, POS, and operational issues during shifts</li>
+                            <li class="flex gap-2"><span class="text-slate-400">•</span> Managed cash handling, register balancing, and accurate end-of-shift financial reporting</li>
+                            <li class="flex gap-2"><span class="text-slate-400">•</span> Trained and mentored new employees, clearly explaining procedures and resolving questions efficiently</li>
+                            <li class="flex gap-2"><span class="text-slate-400">•</span> Maintained organized, clean workstations and ensured systems and equipment were functioning properly</li>
+                            <li class="flex gap-2"><span class="text-slate-400">•</span> Demonstrated strong customer-facing communication and issue resolution under pressure</li>
+                        </ul>
                     </div>
                 </div>
-                <p class="mt-4 text-slate-500 text-sm leading-relaxed">
-                    Providing safe and reliable medical transport services for patients.
-                </p>
-            </a>
+            </div>
 
-            <!-- In-N-Out Burger -->
-            <a href="https://YOUR-LINK-HERE-4.com" target="_blank" rel="noopener noreferrer"
-               class="experience-card block bg-white border border-slate-200 rounded-2xl p-6 hover:border-slate-300">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center">
-                                <i class="fa-solid fa-burger"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-lg text-slate-900">In-N-Out Burger</h3>
-                                <p class="text-slate-600">Assistant Manager</p>
-                            </div>
+            <!-- 5. Freelance -->
+            <div class="border border-slate-200 rounded-2xl overflow-hidden">
+                <button onclick="toggleAccordion(this)" 
+                        class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-colors">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center overflow-hidden border border-slate-200">
+                            <img src="logos/freelance.png" alt="Freelance" class="w-full h-full object-contain p-1" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="hidden w-full h-full items-center justify-center text-violet-600 font-bold text-xs">FREELANCE</div>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-slate-900">Freelance</h3>
+                            <p class="text-slate-600 text-sm">Graphic Designer and AV Operator</p>
                         </div>
                     </div>
-                    <div class="text-sm text-slate-500 font-medium whitespace-nowrap">
-                        Aug 2020 – Jan 2026
+                    <div class="flex items-center gap-4">
+                        <span class="text-sm text-slate-500 font-medium hidden sm:block">Jan 2018 – Present</span>
+                        <i class="fa-solid fa-chevron-down accordion-icon text-slate-400"></i>
+                    </div>
+                </button>
+                
+                <div class="accordion-content bg-slate-50">
+                    <div class="px-6 pb-6 pt-2">
+                        <ul class="space-y-2 text-slate-700 text-sm leading-relaxed">
+                            <li class="flex gap-2"><span class="text-slate-400">•</span> Design digital and print media including sermon slides, social media graphics, event flyers, and promotional materials</li>
+                            <li class="flex gap-2"><span class="text-slate-400">•</span> Operate audio, video, and lighting systems during live worship services and special events</li>
+                            <li class="flex gap-2"><span class="text-slate-400">•</span> Mix live sound for speakers, musicians, and vocalists to ensure clear and balanced audio</li>
+                            <li class="flex gap-2"><span class="text-slate-400">•</span> Set up, test, and troubleshoot AV equipment including cameras, microphones, and projection systems</li>
+                        </ul>
                     </div>
                 </div>
-                <p class="mt-4 text-slate-500 text-sm leading-relaxed">
-                    Led daily operations, trained team members, and maintained high standards of service and efficiency.
-                </p>
-            </a>
+            </div>
 
         </div>
     </section>
@@ -283,6 +340,25 @@
             <p>© 2026 Edwin Clyde Dela Rosa. All rights reserved.💙</p>
         </div>
     </footer>
+
+    <script>
+        function toggleAccordion(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('.accordion-icon');
+            
+            // Close all other open accordions (optional - remove if you want multiple open)
+            document.querySelectorAll('.accordion-content.open').forEach(openContent => {
+                if (openContent !== content) {
+                    openContent.classList.remove('open');
+                    openContent.previousElementSibling.querySelector('.accordion-icon').classList.remove('rotated');
+                }
+            });
+            
+            // Toggle current
+            content.classList.toggle('open');
+            icon.classList.toggle('rotated');
+        }
+    </script>
 
 </body>
 </html>
